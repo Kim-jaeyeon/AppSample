@@ -3,12 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
+import 'package:appsample/category.dart';
+
 final dummyItems = [
-  'assets/IMG_9303.jpg',
-  'assets/IMG_1308.JPG',
-  'assets/IMG_1856.JPG',
-  'assets/IMG_3916.JPG',
-  'assets/IMG_5158.JPG',
+
+  'assets/beready.jpeg',
+  'assets/eyebrow.jpeg',
+  'assets/lee.jpeg',
+  'assets/lipstick.jpeg',
+  'assets/lipstick2.jpeg',
 ];
 
 
@@ -67,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
       extendBody: true,
       body:
       ListView(
-        children: <Widget>[SizedBox(height: 100,),MainTop(),MainMiddle()],
+        children: <Widget>[SizedBox(height: 80,),MainTop(),MainMiddle(),MainBottom()],
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -77,7 +80,9 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>category()));
+                },
                 icon: Icon(
                   CupertinoIcons.list_bullet,
                   color: Colors.white,
@@ -95,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.white,
                 )),
             IconButton(
-                onPressed: () {},
+                onPressed: (){},
                 icon: Icon(
                   CupertinoIcons.person_alt_circle,
                   color: Colors.white,
@@ -119,15 +124,19 @@ class _MyHomePageState extends State<MyHomePage> {
     return Column(
       children: <Widget>[
         Text(
-          '${name}님',
+          '${name}님,',
           style: TextStyle(fontSize: 40),
         ),
         Text('안녕하세요!',
         style: TextStyle(fontSize: 20),),
+        SizedBox(
+          height: 40,
+        )
       ],
     );
   }
 
+  @override
   Widget MainMiddle(){
     return CarouselSlider(
       options: CarouselOptions(height: 400.0, autoPlay: true), //높이 400
@@ -145,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
+                  child:Image.asset(
                     url,
                     fit: BoxFit.cover,
                   ),
@@ -154,6 +163,36 @@ class _MyHomePageState extends State<MyHomePage> {
           },
         );
       }).toList(),
+    );
+  }
+
+  @override
+  Widget MainBottom(){
+    return Column(
+      children: <Widget>[
+        SizedBox(
+          height: 30,
+        ),
+        AnimatedContainer(
+            duration: Duration(milliseconds: 300),
+            child: Column(
+              children: <Widget>[
+                Text('\'화장품을 직접 써보지 않고\'',style: TextStyle(fontSize: 30),),
+                Text('구매해도 괜찮다고?',style: TextStyle(fontSize: 15),),
+              ],
+            ),
+          curve: Curves.easeInOut,
+        ),
+        SizedBox(
+          height: 80,
+        ),
+        Text('그 이유 확인하기',style: TextStyle(fontSize: 20),),
+        Icon(CupertinoIcons.arrow_down,size: 200,color: Colors.lightBlue[200],),
+        SizedBox(
+          height: 50,
+        ),
+
+      ],
     );
   }
 }

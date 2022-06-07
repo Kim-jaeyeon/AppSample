@@ -136,15 +136,6 @@ class category extends StatelessWidget {
         SizedBox(
           height: 30,
         ),
-        Center(
-          child: CupertinoButton(
-            onPressed: (){
-              Navigator.pop(context);
-            },
-            color: Colors.pinkAccent[200],
-            child: Icon(CupertinoIcons.chevron_left),
-          ),
-        ),
       ],
     );
   }
